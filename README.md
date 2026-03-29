@@ -54,7 +54,7 @@
 ## 📸 Demo Preview
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJkYjY5dWZ4b2p4bTRoY2JqM3p5eTN6M2JrZ3h4Z2J2d3B1a2c3NyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3o7aD2saalBwwftBIY/giphy.gif" width="600"/>
+  <img src="image.png" width="600"/>
 </p>
 
 ---
