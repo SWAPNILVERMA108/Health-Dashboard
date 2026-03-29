@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrated Health Dashboard</title>
+    <link rel="stylesheet" href="health.css">
+    <script src="health.js" defer></script> 
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <span>🏥 Health Dashboard</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a onclick="navigate('home')" id="nav-home" class="active">Home</a></li>
+                    <li><a onclick="navigate('about')" id="nav-about">About</a></li>
+                    <li><a onclick="navigate('service')" id="nav-service">Services</a></li>
+                    <li><a onclick="navigate('contact')" id="nav-contact">Contact</a></li>
+                    <li><a onclick="navigate('login')" id="nav-login">Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div id="home" class="section-view active-view">
+            <div class="hero">
+                <h1>Integrated Health Dashboard</h1>
+                <p>Consolidating Vital Signs & Digital Prescriptions</p>
+                <div style="margin-top: 20px;">
+                    <button onclick="navigate('login')" class="btn-primary">Login to Monitor</button>
+                </div>
+            </div>
+            <div class="grid-layout">
+                <div class="card">
+                    <h3>Project Goal</h3>
+                    <p>Eliminate "Data Silos" and "Illegible Prescriptions" by unifying health data.</p>
+                </div>
+                <div class="card">
+                    <h3>Team</h3>
+                    <p><strong>Developed by:</strong> Swapnil Verma & Sidhant Prakash</p>
+                    <p><strong>Guide:</strong> Dr. Neha Gupta</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="section-view">
+            <div class="card">
+                <h1>About the Project</h1>
+                <p>This project solves clinical data scattering by creating a centralized dashboard.</p>
+                <br>
+                <h3>Features:</h3>
+                <ul>
+                    <li>✅ Digital Prescriptions (e-Rx)</li>
+                    <li>✅ Critical Health Alerts</li>
+                    <li>✅ Unified Vitals (BP, Heart Rate, SpO2)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="service" class="section-view">
+            
+            <div id="service-lock" style="text-align: center; padding: 40px;">
+                <div class="card" style="max-width: 500px; margin: 0 auto;">
+                    <h2>🔒 Access Restricted</h2>
+                    <p>Patient records and live vitals are confidential.</p>
+                    <p>Please login as a Doctor or Family Member to view.</p>
+                    <button onclick="navigate('login')" class="btn-primary" style="margin-top: 20px;">Go to Login</button>
+                </div>
+            </div>
+
+            <div id="service-content" style="display: none;">
+                
+                <div class="section-header">
+                    <h2>Patient Dashboard</h2>
+                    <span id="service-user-role" style="font-weight: bold; color: var(--primary-blue);"></span>
+                </div>
+
+                <div class="vitals-panel">
+                    <h3 style="color:white; margin-bottom:15px;">🔴 Live Vital Signs Monitor</h3>
+                    <div class="vitals-grid">
+                        <div class="vital-card"><span class="vital-icon">❤️</span><span class="vital-name">Heart Rate</span><span class="vital-value" id="bpm-val">--</span><span class="vital-unit">BPM</span></div>
+                        <div class="vital-card"><span class="vital-icon">🩸</span><span class="vital-name">Blood Pressure</span><span class="vital-value" id="bp-val">--/--</span><span class="vital-unit">mmHg</span></div>
+                        <div class="vital-card"><span class="vital-icon">💧</span><span class="vital-name">SpO2</span><span class="vital-value" id="spo2-val">--</span><span class="vital-unit">%</span></div>
+                        <div class="vital-card"><span class="vital-icon">🌡️</span><span class="vital-name">Temperature</span><span class="vital-value" id="temp-val">--</span><span class="vital-unit">°F</span></div>
+                        <div class="vital-card"><span class="vital-icon">🌬️</span><span class="vital-name">Respiration</span><span class="vital-value" id="resp-val">--</span><span class="vital-unit">breaths/min</span></div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="grid-layout">
+                    
+                    <div class="card">
+                        <h3>Patient BMI</h3>
+                        <div class="stat-box">
+                            <div class="bmi-score">22.4</div>
+                            <p>Status: <strong>Normal</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="card" style="grid-row: span 2;">
+                        <h3>Active Prescriptions</h3>
+                        <ul class="data-list" id="rx-list">
+                            <li><span>Paracetamol 500mg (BD)</span> <button class="delete-btn" onclick="removeItem(this)">✖</button></li>
+                            <li><span>Vitamin C (OD)</span> <button class="delete-btn" onclick="removeItem(this)">✖</button></li>
+                        </ul>
+                        <div class="input-group">
+                            <input type="text" id="input-rx" placeholder="Medicine Name & Dosage">
+                            <button onclick="addItem('rx-list', 'input-rx', true)">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Patient History</h3>
+                        <ul class="data-list" id="history-list">
+                            <li><span>Allergy: Penicillin</span></li>
+                            <li><span>Last Visit: 15 Nov 2025</span></li>
+                        </ul>
+                        <div class="input-group">
+                            <input type="text" id="input-history" placeholder="Add Medical History">
+                            <button onclick="addItem('history-list', 'input-history', false)">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Diagnosis Details</h3>
+                        <ul class="data-list" id="diagnosis-list">
+                            <li><span>Mild viral fever</span> <button class="delete-btn" onclick="removeItem(this)">✖</button></li>
+                            <li><span>Dehydration detected</span> <button class="delete-btn" onclick="removeItem(this)">✖</button></li>
+                        </ul>
+                         <div class="input-group">
+                            <input type="text" id="input-diagnosis" placeholder="Add Diagnosis Detail">
+                            <button onclick="addItem('diagnosis-list', 'input-diagnosis', true)">Add</button>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Patient Diet Plan</h3>
+                        <ul class="data-list" id="diet-list">
+                            <li><span>Morning: Oats & Fruits</span> <button class="delete-btn" onclick="removeItem(this)">✖</button></li>
+                            <li><span>Lunch: Dal-Rice</span> <button class="delete-btn" onclick="removeItem(this)">✖</button></li>
+                        </ul>
+                        <div class="input-group">
+                            <input type="text" id="input-diet" placeholder="Add Diet Item">
+                            <button onclick="addItem('diet-list', 'input-diet', true)">Add</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="section-view">
+            <div class="card" style="text-align: center;">
+                <h1>Contact Support</h1>
+                <p>Email: support@health123.com</p>
+                <p>Phone: +91 1234567890</p>
+            </div>
+        </div>
+
+        <div id="login" class="section-view">
+            <div id="login-selection">
+                <div class="card" id="login-gate">
+                    <h2>Select User Role</h2>
+                    <p>Authentication required for Dashboard</p>
+                    <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
+                    
+                    <button class="role-btn btn-doc" onclick="login('doctor')">
+    Login as <strong>ADMIN</strong><br>
+    <small>(Full Access + Edit Permissions)</small>
+</button>
+                    
+                    <button class="role-btn btn-fam" onclick="login('family')">
+                        Login as <strong>FAMILY MEMBER</strong><br>
+                        <small>(Read Only Mode)</small>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="alert-modal" style="display: none;">
+        <div class="alert-box">
+            <div class="alert-title">⚠️ CRITICAL ALERT</div>
+            <p>Abnormal Heart Rate Detected!</p>
+            <h1 id="alert-val" style="font-size: 4rem; margin: 10px 0;">--</h1>
+            <button class="alert-btn" onclick="closeAlert()">ACKNOWLEDGE</button>
+        </div>
+    </div>
+
+</body>
+</html>

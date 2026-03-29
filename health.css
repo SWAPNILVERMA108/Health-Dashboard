@@ -1,0 +1,351 @@
+:root {
+    --primary-blue: #0056b3;
+    --light-blue: #e3f2fd;
+    --accent-teal: #009688;
+    --danger-red: #d32f2f;
+    --text-dark: #333;
+    --gray-bg: #f8f9fa;
+    --white: #ffffff;
+    --dark-monitor: #263238;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--gray-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+
+   /* 2. NAVIGATION BAR */
+header {
+    background: var(--white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-dark);
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+/* 3. GENERAL LAYOUT UTILITIES */
+  
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 20px;
+}
+
+/* Page Switching Logic */
+.section-view {
+    display: none; /* Hidden by default */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.section-view.active-view {
+    display: block; /* Shown when active */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid System for Cards */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-blue);
+}
+
+.card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+
+   /* LIVE MONITOR STYLES (Service Section) */
+   
+.vitals-panel {
+    background-color: var(--dark-monitor);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive 5 columns */
+    gap: 15px;
+}
+
+.vital-card {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    color: white;
+    transition: transform 0.2s;
+}
+
+.vital-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.15);
+}
+
+.vital-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.vital-name {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    display: block;
+}
+
+.vital-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4fc3f7; /* Bright blue for numbers */
+    display: block;
+    margin: 5px 0;
+}
+
+.vital-unit {
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+
+    /* UI COMPONENTS (Buttons, Lists, Hero) */
+   
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+    color: white;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-primary:hover {
+    background: #004494;
+}
+
+.stat-box {
+    background: var(--light-blue);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.bmi-score {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-blue);
+}
+
+/* Data Lists styling */
+.data-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+    /* DOCTOR EDIT MODE (Hidden by default) */
+   
+.input-group {
+    display: none;
+    margin-top: 10px;
+    gap: 5px;
+}
+
+.delete-btn {
+    display: none;
+    margin-left: 10px;
+    color: var(--danger-red);
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+}
+
+/* 2. Show them ONLY when '.doctor-mode' class is added to the container */
+.doctor-mode .input-group {
+    display: flex;
+}
+
+.doctor-mode .delete-btn {
+    display: inline-block;
+}
+
+/* Input Field Styling */
+.input-group input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.input-group button {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* 3. EXCEPTION: Patient History (Add Only, Never Delete) */
+
+#history-list .delete-btn {
+    display: none !important;
+}
+
+
+    /* LOGIN SECTION & MODALS */
+   
+#login-gate {
+    max-width: 400px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.role-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+
+.role-btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-doc { background: var(--primary-blue); }
+.btn-fam { background: var(--accent-teal); }
+
+/* Critical Alert Modal */
+#alert-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert-box {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    border: 5px solid var(--danger-red);
+    max-width: 400px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.alert-title {
+    color: var(--danger-red);
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.alert-btn {
+    background: var(--danger-red);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
